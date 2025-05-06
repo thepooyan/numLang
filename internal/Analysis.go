@@ -2,7 +2,7 @@ package internal
 
 import "strings"
 
-func Interpret(mainContent string) {
+func (program *Program) Interpret(mainContent string) {
   lines := strings.Split(mainContent, "\n")
 
   for _,line := range lines {

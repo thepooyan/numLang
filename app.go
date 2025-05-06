@@ -20,5 +20,7 @@ func main() {
   }
 
   fileText := string(content)
-  internal.Interpret(fileText)
+  program := internal.NewProgram()
+
+  program.Interpret(fileText)
 }

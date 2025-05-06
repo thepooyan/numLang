@@ -14,11 +14,7 @@ func NewProgram() *Program {
 	}
 }
 
-func (p *Program) addVariable(
-	varName string,
-	varType string,
-	value any,
-) error {
+func (p *Program) addVariable( varName string, varType string, value any,) error {
 	switch varType {
 	case "int":
 		if val, ok := value.(int); ok {
@@ -39,9 +35,7 @@ func (p *Program) addVariable(
 	}
 }
 
-func (p *Program) retrieveValue(
-	varName string,
-) (any, string, error) {
+func (p *Program) retrieveValue( varName string,) (any, string, error) {
 	if val, ok := p.intVariables[varName]; ok {
 		return val, "int", nil
 	}
