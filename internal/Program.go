@@ -27,7 +27,7 @@ func (p *Program) addVariable( varName string, varType string, value string,) er
   case "string":
     content, ok := ExtractQuotedString(value); 
     if ok == false {
-      return fmt.Errorf("Invalid syntax")
+      return fmt.Errorf(fmt.Sprintf("Invalid syntax: %s", value))
     }
     p.variables[varName] = content
     return nil
