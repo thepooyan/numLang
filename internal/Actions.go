@@ -11,7 +11,7 @@ type Action = func(args ...string)
 func (program *Program) getActions() map[*regexp.Regexp]Action {
   return map[*regexp.Regexp]Action {
     regexp.MustCompile("^var$"): program.variable,
-    regexp.MustCompile("^output\\(.*\\)$"): program.output,
+    regexp.MustCompile("^output\\(.*$"): program.output,
   }
 }
 
@@ -30,9 +30,10 @@ func (program *Program) variable(args ...string) {
 }
 
 func (program *Program) output(args ...string) {
-  str, err := ExtractParenthesisContent(strings.Join(args, ""))
+  joined := strings.Join(args, " ")
+  str, err := ExtractParenthesisContent(joined)
   if err != nil {
-    println(err)
+    println(err.Error())
     os.Exit(1)
   }
   println(str)

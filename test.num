@@ -14,3 +14,4 @@ var width int = 2
 //area = width * height
 
 output(area)
+output("hello world!")
