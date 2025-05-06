@@ -4,7 +4,7 @@
 
 var width Int = 0
 //ksks
-var height Int = 0
+var height Ints = 0
 var area Int = 0
 
 width = input("Enter first number: ")
