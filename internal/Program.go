@@ -24,6 +24,13 @@ func (p *Program) addVariable( varName string, varType string, value string,) er
 		}
 		p.variables[varName] = value
 		return nil
+  case "string":
+    content, ok := ExtractQuotedString(value); 
+    if ok == false {
+      return fmt.Errorf("Invalid syntax")
+    }
+    p.variables[varName] = content
+    return nil
 	default:
 		return fmt.Errorf("invalid variable type")
 	}
