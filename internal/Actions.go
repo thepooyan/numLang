@@ -2,13 +2,16 @@ package internal
 
 type Action = func(args ...string)
 
-func getActions() map[string]Action {
+func (program *Program) getActions() map[string]Action {
   return map[string]Action {
-    "var": variable,
+    "var": program.variable,
   }
 }
 
-func variable(args ...string) {
+func (program *Program) variable(args ...string) {
   println("variable")
-  println(args)
+  program.addVariable("name", "int", "hi")
+  for _,t := range args {
+    println(t)
+  }
 }

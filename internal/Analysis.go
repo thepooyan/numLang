@@ -23,7 +23,7 @@ func (program *Program) cleanupLine(line string) {
 }
 
 func (program *Program) interpretLine(tokens []string) {
-  actions := getActions()
+  actions := program.getActions()
   if action,exists := actions[ tokens[0] ]; exists {
     action(tokens...)
   } else {
