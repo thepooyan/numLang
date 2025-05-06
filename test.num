@@ -2,14 +2,15 @@
 
 //this is comment
 
-var width Int = 0
+var width int = 2
+
 //ksks
-var height Ints = 0
-var area Int = 0
+//var height int = 0
+//var area int = 0
 
-width = input("Enter first number: ")
-height = input("Enter second number: ")
+//width = input("Enter first number: ")
+//height = input("Enter second number: ")
 
-area = width * height
+//area = width * height
 
 output(area)

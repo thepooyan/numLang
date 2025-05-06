@@ -1,6 +1,9 @@
 package internal
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 type Program struct {
 	intVariables    map[string]int
@@ -14,28 +17,30 @@ func NewProgram() *Program {
 	}
 }
 
-func (p *Program) addVariable( varName string, varType string, value any,) error {
+func (p *Program) addVariable( varName string, varType string, value string,) error {
 	switch varType {
 	case "int":
-		if val, ok := value.(int); ok {
-			p.intVariables[varName] = val
-			return nil
-		} else {
-			return fmt.Errorf("value is not an integer")
+		val, err := strconv.Atoi(value)
+		if err != nil {
+			return fmt.Errorf("value is not a valid integer string: %w", err)
 		}
+		p.intVariables[varName] = val
+		return nil
 	case "decimal":
-		if val, ok := value.(float64); ok {
-			p.decimalVariables[varName] = val
-			return nil
-		} else {
-			return fmt.Errorf("value is not a decimal")
+		val, err := strconv.ParseFloat(value, 64)
+		if err != nil {
+			return fmt.Errorf("value is not a valid decimal string: %w", err)
 		}
+		p.decimalVariables[varName] = val
+		return nil
 	default:
 		return fmt.Errorf("invalid variable type")
 	}
 }
 
-func (p *Program) retrieveValue( varName string,) (any, string, error) {
+func (p *Program) retrieveValue(
+	varName string,
+) (any, string, error) {
 	if val, ok := p.intVariables[varName]; ok {
 		return val, "int", nil
 	}
