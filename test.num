@@ -1,0 +1,15 @@
+
+
+//this is comment
+
+var width Int = 0
+//ksks
+var height Int = 0
+var area Int = 0
+
+width = input("Enter first number: ")
+height = input("Enter second number: ")
+
+area = width * height
+
+output(area)
