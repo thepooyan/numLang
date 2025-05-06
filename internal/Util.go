@@ -1,7 +1,9 @@
 package internal
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -44,4 +46,10 @@ func ExtractQuotedString(s string) (string, bool) {
 		}
 	}
 	return s, false
+}
+
+func Input() string {
+  reader := bufio.NewReader(os.Stdin)
+	res, _ := reader.ReadString('\n')
+  return strings.TrimSpace(res)
 }

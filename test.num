@@ -15,5 +15,7 @@ var width int = 2
 
 var area int = 20
 output(area)
+input(area)
+output(area)
 output("hello world!")
 output('hello world!')

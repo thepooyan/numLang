@@ -12,6 +12,28 @@ func (program *Program) getActions() map[*regexp.Regexp]Action {
   return map[*regexp.Regexp]Action {
     regexp.MustCompile("^var$"): program.variable,
     regexp.MustCompile("^output\\(.*$"): program.output,
+    regexp.MustCompile("^input\\(.*$"): program.input,
+  }
+}
+
+func (program *Program) input(args ...string) {
+  join := strings.Join(args, " ")
+  str,ok := ExtractParenthesisContent(join)
+  if ok != nil {
+    println("Invalid syntax:")
+    println(join)
+    os.Exit(1)
+  } 
+  _, _, err := program.retrieveValue(str)
+  if err != nil {
+    println(err.Error())
+    os.Exit(1)
+  }
+  in := Input()
+  err = program.addVariable(str, "decimal", in)
+  if err != nil {
+    println(err.Error())
+    os.Exit(1)
   }
 }
 
