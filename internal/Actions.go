@@ -25,29 +25,26 @@ func (p *Program) assignment(args ...string) {
     println(joined)
     os.Exit(1)
   }
-  switch args[3] {
-  case "+":
-  case "-":
-  case "*":
-  case "/":
-  default:
-    println("Unsuported operation:", args[3])
-    os.Exit(1)
-  }
   val1, _,err := p.retrieveValue(args[2])
   if err != nil {
     println(err.Error())
     os.Exit(1)
   }
-  int1, _ := strconv.ParseFloat(val1, 64)
+  int1, _ := strconv.Atoi(val1)
 
   val2, _,err := p.retrieveValue(args[4])
   if err != nil {
     println(err.Error())
     os.Exit(1)
   }
-  int2, _ := strconv.ParseFloat(val2, 64)
-  p.addVariable(args[0], "int", fmt.Sprintf("%g",int1*int2) )
+  int2, _ := strconv.Atoi(val2)
+  result, err := mathOperations(args[3], int1, int2)
+  if err != nil {
+    println(err.Error())
+    os.Exit(1)
+  }
+
+  p.addVariable(args[0], "int", fmt.Sprintf("%d",result) )
 
 }
 

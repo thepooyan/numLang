@@ -53,3 +53,17 @@ func Input() string {
 	res, _ := reader.ReadString('\n')
   return strings.TrimSpace(res)
 }
+
+func mathOperations(symbol string, num1,num2 int) (int, error) {
+  switch (symbol) {
+    case "+":
+      return num1 + num2, nil
+    case "-":
+      return num1 - num2, nil
+    case "*":
+      return num1 * num2, nil
+    case "/":
+      return num1 / num2, nil
+  }
+  return 0, fmt.Errorf("Unsupported math operation %s", symbol)
+}
