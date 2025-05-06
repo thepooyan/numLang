@@ -2,15 +2,15 @@
 
 //this is comment
 
-var width int = 2
-var height int = 3
-var area int = 5
+var width int = 0
+var height int = 0
+var area int = 0
 
 output("Enter the width: ")
-//input(width)
+input(width)
 
 output("Enter the height: ")
-//input(height)
+input(height)
 
 area = width * height
 
