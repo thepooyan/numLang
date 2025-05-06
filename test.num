@@ -1,6 +1,4 @@
-
-
-//this is comment
+// this is comment
 
 var width int = 0
 var height int = 0
