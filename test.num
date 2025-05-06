@@ -14,5 +14,5 @@ input(height)
 
 area = width * height
 
-output("area is :")
+output("area is:")
 output(area)

@@ -47,7 +47,7 @@ func (p *Program) assignment(args ...string) {
     os.Exit(1)
   }
   int2, _ := strconv.ParseFloat(val2, 64)
-  p.addVariable(args[0], "decimal", fmt.Sprintf("%g",int1*int2) )
+  p.addVariable(args[0], "int", fmt.Sprintf("%g",int1*int2) )
 
 }
 
@@ -65,7 +65,7 @@ func (program *Program) input(args ...string) {
     os.Exit(1)
   }
   in := Input()
-  err = program.addVariable(str, "decimal", in)
+  err = program.addVariable(str, "int", in)
   if err != nil {
     println(err.Error())
     os.Exit(1)

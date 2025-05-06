@@ -24,19 +24,12 @@ func (p *Program) addVariable( varName string, varType string, value string,) er
 		}
 		p.variables[varName] = value
 		return nil
-	case "decimal":
-		_, err := strconv.ParseFloat(value, 64)
-		if err != nil {
-			return fmt.Errorf("value is not a valid decimal string: %w", err)
-		}
-		p.variables[varName] = value
-		return nil
 	default:
 		return fmt.Errorf("invalid variable type")
 	}
 }
 
-func (p *Program) retrieveValue( varName string,) (string, string, error) {
+func (p *Program) retrieveValue(varName string) (string, string, error) {
 	if val, ok := p.variables[varName]; ok {
 		return val, "int", nil
 	}
