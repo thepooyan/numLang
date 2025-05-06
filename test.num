@@ -15,3 +15,4 @@ var width int = 2
 
 output(area)
 output("hello world!")
+output('hello world!')

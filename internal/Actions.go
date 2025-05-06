@@ -36,5 +36,9 @@ func (program *Program) output(args ...string) {
     println(err.Error())
     os.Exit(1)
   }
-  println(str)
+  if str, ok := ExtractQuotedString(str); ok {
+    println(str)
+    return
+  }
+  println("var")
 }

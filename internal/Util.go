@@ -33,3 +33,15 @@ func ExtractParenthesisContent(s string) (string, error) {
 
 	return s[startIndex+1 : endIndex], nil
 }
+
+func ExtractQuotedString(s string) (string, bool) {
+	if len(s) >= 2 {
+		if s[0] == '"' && s[len(s)-1] == '"' {
+			return s[1 : len(s)-1], true
+		}
+		if s[0] == '\'' && s[len(s)-1] == '\'' {
+			return s[1 : len(s)-1], true 
+		}
+	}
+	return s, false
+}
