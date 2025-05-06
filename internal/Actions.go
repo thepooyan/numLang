@@ -40,5 +40,10 @@ func (program *Program) output(args ...string) {
     println(str)
     return
   }
-  println("var")
+  val, _, err := program.retrieveValue(str)
+  if err != nil {
+    println(err.Error())
+    os.Exit(1)
+  }
+  println(val)
 }
