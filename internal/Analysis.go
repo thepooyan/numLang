@@ -23,6 +23,13 @@ func (program *Program) cleanupLine(line string) {
 }
 
 func (program *Program) interpretLine(tokens []string) {
+
+  _, _, err := program.retrieveValue(tokens[0])
+  if err == nil {
+    program.assignment(tokens...)
+    return
+  }
+
   actions := program.getActions()
   for key, value := range actions {
     if key.MatchString(tokens[0]) {

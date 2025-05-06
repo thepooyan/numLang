@@ -3,19 +3,16 @@
 //this is comment
 
 var width int = 2
+var height int = 3
+var area int = 5
 
-//ksks
-//var height int = 0
-//var area int = 0
+output("Enter the width: ")
+//input(width)
 
-//width = input("Enter first number: ")
-//height = input("Enter second number: ")
+output("Enter the height: ")
+//input(height)
 
-//area = width * height
+area = width * height
 
-var area int = 20
+output("area is :")
 output(area)
-input(area)
-output(area)
-output("hello world!")
-output('hello world!')

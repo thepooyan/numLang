@@ -1,9 +1,11 @@
 package internal
 
 import (
+	"fmt"
 	"os"
+	"regexp"
+	"strconv"
 	"strings"
-  "regexp"
 )
 
 type Action = func(args ...string)
@@ -14,6 +16,39 @@ func (program *Program) getActions() map[*regexp.Regexp]Action {
     regexp.MustCompile("^output\\(.*$"): program.output,
     regexp.MustCompile("^input\\(.*$"): program.input,
   }
+}
+
+func (p *Program) assignment(args ...string) {
+  joined := strings.Join(args, " ")
+  if len(args) != 5 || args[1] != "=" {
+    println("Invalid syntax:")
+    println(joined)
+    os.Exit(1)
+  }
+  switch args[3] {
+  case "+":
+  case "-":
+  case "*":
+  case "/":
+  default:
+    println("Unsuported operation:", args[3])
+    os.Exit(1)
+  }
+  val1, _,err := p.retrieveValue(args[2])
+  if err != nil {
+    println(err.Error())
+    os.Exit(1)
+  }
+  int1, _ := strconv.ParseFloat(val1, 64)
+
+  val2, _,err := p.retrieveValue(args[4])
+  if err != nil {
+    println(err.Error())
+    os.Exit(1)
+  }
+  int2, _ := strconv.ParseFloat(val2, 64)
+  p.addVariable(args[0], "decimal", fmt.Sprintf("%f",int1*int2) )
+
 }
 
 func (program *Program) input(args ...string) {
