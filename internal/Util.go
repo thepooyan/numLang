@@ -1,6 +1,9 @@
 package internal
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 func cleanupTokens(tokens []string) []string {
   var cleaned []string
@@ -11,4 +14,22 @@ func cleanupTokens(tokens []string) []string {
     cleaned = append(cleaned, nt)
   }
   return cleaned
+}
+
+func ExtractParenthesisContent(s string) (string, error) {
+	startIndex := strings.Index(s, "(")
+	if startIndex == -1 {
+		return "", fmt.Errorf("no opening parenthesis found")
+	}
+
+	endIndex := strings.Index(s, ")")
+	if endIndex == -1 {
+		return "", fmt.Errorf("no closing parenthesis found")
+	}
+
+	if endIndex < startIndex {
+		return "", fmt.Errorf("unbalanced parentheses: closing before opening")
+	}
+
+	return s[startIndex+1 : endIndex], nil
 }

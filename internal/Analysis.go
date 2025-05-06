@@ -24,10 +24,12 @@ func (program *Program) cleanupLine(line string) {
 
 func (program *Program) interpretLine(tokens []string) {
   actions := program.getActions()
-  if action,exists := actions[ tokens[0] ]; exists {
-    action(tokens...)
-  } else {
-    println("Undefined keyword", tokens[0])
-    os.Exit(1)
+  for key, value := range actions {
+    if key.MatchString(tokens[0]) {
+      value(tokens...)
+      return
+    }
   }
+  println("Undefined keyword", tokens[0])
+  os.Exit(1)
 }

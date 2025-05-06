@@ -3,13 +3,15 @@ package internal
 import (
 	"os"
 	"strings"
+  "regexp"
 )
 
 type Action = func(args ...string)
 
-func (program *Program) getActions() map[string]Action {
-  return map[string]Action {
-    "var": program.variable,
+func (program *Program) getActions() map[*regexp.Regexp]Action {
+  return map[*regexp.Regexp]Action {
+    regexp.MustCompile("^var$"): program.variable,
+    regexp.MustCompile("^output\\(.*\\)$"): program.output,
   }
 }
 
@@ -25,4 +27,13 @@ func (program *Program) variable(args ...string) {
     println(err.Error())
     os.Exit(1)
   }
+}
+
+func (program *Program) output(args ...string) {
+  str, err := ExtractParenthesisContent(strings.Join(args, ""))
+  if err != nil {
+    println(err)
+    os.Exit(1)
+  }
+  println(str)
 }
