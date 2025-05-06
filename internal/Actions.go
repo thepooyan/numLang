@@ -47,7 +47,7 @@ func (p *Program) assignment(args ...string) {
     os.Exit(1)
   }
   int2, _ := strconv.ParseFloat(val2, 64)
-  p.addVariable(args[0], "decimal", fmt.Sprintf("%f",int1*int2) )
+  p.addVariable(args[0], "decimal", fmt.Sprintf("%g",int1*int2) )
 
 }
 

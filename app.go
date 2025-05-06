@@ -11,7 +11,7 @@ func main() {
     os.Exit(1)
   }
 
-  filename := "test.num"
+  filename := os.Args[1]
 
   content, err := os.ReadFile(filename)
   if err != nil {
